@@ -60,25 +60,18 @@ foundChannelId="";
 arrayLen;
 searchChannel(){
   this.chatBox.searchChannel().subscribe(res=>{
-    // console.log("RES value"+(res.channels[1].unique_name));
-    // console.log("len"+res.channels.length);
+  
     for(let index=0;index<res.channels.length;index++){
-        // console.log("array "+(res.channels[index].sid));     
          this.channelArray.push(res.channels[index].unique_name)
-        //  console.log("channel array: "+ this.channelArray);
-    // console.log("channel name: "+this.channel);
      this.arrayLen=this.channelArray.length;
     for(let index=0;index<this.arrayLen;index++){
-     // console.log("in array: "+this.channelArray[index]+"    index  "+index);
       if(this.channelArray[index]==this.channel)
       {
-        // console.log("channel fopund");
         this.foundChannel=this.channel;
         this.foundChannelId=res.channels[index].sid;
         break;
       }
       else{
-      // console.log("not found");
       this.foundChannel="channel not found";
       }
     }

@@ -7,7 +7,8 @@
             <button type="button" (click)="addChannel()">Click to create Channel</button></li>
           <li> <input type="text" placeholder="Search channel" [(ngModel)]="channel">
             <button (click)="searchChannel()">find</button>
-            <p>{{foundChannel}}</p><button (click)="joinChannel()">Join {{foundChannel}}</button><br/></li>
+            <p>{{foundChannel}}</p>
+            <button (click)="joinChannel()">Join {{foundChannel}}</button><br/></li>
       
         </ul>
   </div>
@@ -19,6 +20,7 @@
         </ul>
        <input type="text" placeholder="Enter message" [(ngModel)]="messages"/>
       <button (click)="sendMessage()">Send message</button>
+      <button (click)="ngOnInit()">Show message</button>
 </div>
 </div>
 

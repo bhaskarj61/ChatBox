@@ -29,7 +29,7 @@ searchChannel():Observable<any>{
   return  this.http.get("https://chat.twilio.com/v2/Services/"+this.serviceId+"/Channels",this.httpOpt).pipe(map(data=>data)); 
 }
 
-myChannelId:string="CH666f142509eb44e59d6e06714b955a2c";
+myChannelId:string="CH0c65686717fc4a5288bbb4289380590b";
  identity:string=localStorage.getItem('email');
  serviceId:string='IS5d2e0aa7ae0e4945b35703395df8825b'
 
