@@ -1,0 +1,13 @@
+.side-bar{
+    width:25%;
+    height:100vh;
+    float: left;
+    background-color: #0e3744bd;
+}
+.message-content{
+    width:75%;
+    height:100vh;
+    float: left;
+    background-color: #105164bd;
+    
+}
