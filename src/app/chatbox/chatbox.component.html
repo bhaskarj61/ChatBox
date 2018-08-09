@@ -1,14 +1,15 @@
 <div class="container">
   <div class="side-bar">
       <button type="button" (click)="addService()">Click to create serveice</button>
-      <br/>
       <hr>
+      <input type="text" placeholder="Enter new Channel name" [(ngModel)]="channelName"/>
+      <br/>
       <button type="button" (click)="addChannel()">Click to create Channel</button>
       <hr>
       
       <input type="text" placeholder="Search channel" [(ngModel)]="channel">
       <button (click)="searchChannel()">find</button>
-      <p>{{foundChannel}}</p><button (click)="joinChannel()">Join</button><br/>
+      <p>{{foundChannel}}</p><button (click)="joinChannel()">Join {{foundChannel}}</button><br/>
   </div>
   <div class="message-content">
       <h2>Your message</h2>

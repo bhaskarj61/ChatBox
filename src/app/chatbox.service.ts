@@ -21,8 +21,8 @@ export class ChatboxService {
     return this.http.post<any>('https://chat.twilio.com/v2/Services','FriendlyName=newService',this.httpOpt);
   }
   //create new channel
-  addChannel():Observable<any> {
-    return this.http.post("https://chat.twilio.com/v2/Services/IS5d2e0aa7ae0e4945b35703395df8825b/Channels","FriendlyName=myChaBox&UniqueName=chatChannel",this.httpOpt);
+  addChannel(channelName:string):Observable<any> {
+    return this.http.post("https://chat.twilio.com/v2/Services/IS5d2e0aa7ae0e4945b35703395df8825b/Channels","FriendlyName=myChaBox&UniqueName="+channelName,this.httpOpt);
  }
 //searching all channel in the service
 searchChannel():Observable<any>{ 
@@ -30,7 +30,7 @@ searchChannel():Observable<any>{
 }
 
 myChannelId:string="CH666f142509eb44e59d6e06714b955a2c";
- identity:string="bhaskarj61@gmail.com";
+ identity:string=localStorage.getItem('email');
  serviceId:string='IS5d2e0aa7ae0e4945b35703395df8825b'
 
 

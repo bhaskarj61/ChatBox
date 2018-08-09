@@ -19,9 +19,9 @@ export class ChatboxComponent implements OnInit {
     console.log(err)
   })
   }
-  //add channel called here
+  //add channel called 
   addChannel(){
-      this.chatBox.addChannel().subscribe(res=>{
+      this.chatBox.addChannel(this.channelName).subscribe(res=>{
         console.log(res);
       },
     err=>{
@@ -38,12 +38,13 @@ export class ChatboxComponent implements OnInit {
     console.log(err);
   })
   }
+  email=localStorage.getItem('email');
   allMessages=[];
   totalMessages:number;
   //View all messages
   viewMessage(){
        this.chatBox.viewMessages().subscribe(res=>{
-        this.allMessages=res.messages;  
+        this.allMessages=res.messages
       },
     err=>{
       console.log(err);
@@ -51,7 +52,7 @@ export class ChatboxComponent implements OnInit {
     
 }
 
-
+//Search Channel
 channel:string="";
 foundChannel="";
 channelArray:any=[];
@@ -87,6 +88,8 @@ err=>{
   console.log();
 })
 }
+
+//joining a new channel
 joinChannel(){
   console.log(this.foundChannelId);
   this.chatBox.joinChannel(this.foundChannelId).subscribe(res=>{
@@ -96,7 +99,7 @@ joinChannel(){
   })
 }
 
-
+//messages load on init
   ngOnInit() {
     this.viewMessage();
   }
