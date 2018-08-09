@@ -1,15 +1,15 @@
 <div class="container">
   <div class="side-bar">
-      <button type="button" (click)="addService()">Click to create serveice</button>
-      <hr>
-      <input type="text" placeholder="Enter new Channel name" [(ngModel)]="channelName"/>
-      <br/>
-      <button type="button" (click)="addChannel()">Click to create Channel</button>
-      <hr>
+      <ul class="nav nav-pills nav-stacked">
+          <li class="active"><button type="button" (click)="addService()">Click to create serveice</button></li>
+          <li><input type="text" placeholder="Enter new Channel name" [(ngModel)]="channelName"/>
+            <br/>
+            <button type="button" (click)="addChannel()">Click to create Channel</button></li>
+          <li> <input type="text" placeholder="Search channel" [(ngModel)]="channel">
+            <button (click)="searchChannel()">find</button>
+            <p>{{foundChannel}}</p><button (click)="joinChannel()">Join {{foundChannel}}</button><br/></li>
       
-      <input type="text" placeholder="Search channel" [(ngModel)]="channel">
-      <button (click)="searchChannel()">find</button>
-      <p>{{foundChannel}}</p><button (click)="joinChannel()">Join {{foundChannel}}</button><br/>
+        </ul>
   </div>
   <div class="message-content">
       <h2>Your message</h2>
@@ -21,3 +21,6 @@
       <button (click)="sendMessage()">Send message</button>
 </div>
 </div>
+
+
+
