@@ -61,9 +61,10 @@ arrayLen;
 searchChannel(){
   this.chatBox.searchChannel().subscribe(res=>{
   
-    for(let index=0;index<res.channels.length;index++){
+    for(let index=0;index<res.channels.length;index++)
+     {
          this.channelArray.push(res.channels[index].unique_name)
-     this.arrayLen=this.channelArray.length;
+         this.arrayLen=this.channelArray.length;
     for(let index=0;index<this.arrayLen;index++){
       if(this.channelArray[index]==this.channel)
       {

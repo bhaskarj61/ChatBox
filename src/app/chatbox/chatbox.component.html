@@ -1,26 +1,25 @@
 <div class="container">
   <div class="side-bar">
       <ul class="nav nav-pills nav-stacked">
-          <li class="active"><button type="button" (click)="addService()">Click to create serveice</button></li>
-          <li><input type="text" placeholder="Enter new Channel name" [(ngModel)]="channelName"/>
-            <br/>
-            <button type="button" (click)="addChannel()">Click to create Channel</button></li>
-          <li> <input type="text" placeholder="Search channel" [(ngModel)]="channel">
-            <button (click)="searchChannel()">find</button>
-            <p>{{foundChannel}}</p>
-            <button (click)="joinChannel()">Join {{foundChannel}}</button><br/></li>
-      
+          <li><input type="text"  class="form-control" placeholder="Enter new Channel name" [(ngModel)]="channelName"/>
+            <button type="button" class="btn btn-primary" (click)="addChannel()">Click to create Channel</button></li>
+             <li> <input  class="form-control" type="text" placeholder="Search channel" [(ngModel)]="channel">
+            <button class="btn btn-default" (click)="searchChannel()"><i class="glyphicon glyphicon-search"></i></button>
+            <button (click)="joinChannel()" class="btn btn-primary">Join {{foundChannel}}</button><br/></li>
         </ul>
+        <button id="createService" type="button" (click)="addService()" class="btn btn-primary">Click to create serveice</button>
   </div>
   <div class="message-content">
-      <h2>Your message</h2>
+    <div class="msg">
+      <h1>Your messages</h1>
       <br/>
         <ul *ngFor="let message of allMessages">
           <li>{{message.body}}<hr></li>
         </ul>
-       <input type="text" placeholder="Enter message" [(ngModel)]="messages"/>
-      <button (click)="sendMessage()">Send message</button>
-      <button (click)="ngOnInit()">Show message</button>
+    </div>
+ <input type="text" class="form-control" placeholder="Enter message" [(ngModel)]="messages"/>
+<button (click)="sendMessage()" class="btn btn-primary">Send message</button>
+<button (click)="ngOnInit()" class="btn btn-primary">Show message</button>
 </div>
 </div>
 
