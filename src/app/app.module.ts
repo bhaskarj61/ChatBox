@@ -1,3 +1,4 @@
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ChatboxComponent } from './chatbox/chatbox.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -34,13 +35,16 @@ const appRoutes: Routes = [
    component: LoginComponent },
   { path: 'chatbox',   
    component: ChatboxComponent },
+   { path: '**',   
+   component: PageNotFoundComponent },
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     ChatboxComponent,
-    LoginComponent
+    LoginComponent,
+    PageNotFoundComponent
     
    
   ],
