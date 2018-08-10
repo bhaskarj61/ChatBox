@@ -15,6 +15,7 @@ import {
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 export function getAuthServiceConfigs() {
   let config = new AuthServiceConfig(
@@ -46,7 +47,8 @@ const appRoutes: Routes = [
     ChatboxComponent,
     LoginComponent,
     PageNotFoundComponent,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
     
    
   ],

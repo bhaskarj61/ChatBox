@@ -1,18 +1,18 @@
 .side-bar{
     width:25%;
-    height:90vh;
+    height:85vh;
     float: left;
     background-color: #0e3744bd;
 }
 .message-content{
     width:75%;
-    height:90vh;
+    height:85vh;
     float: left;
     background-color: #769eaabd;    
     
 }
 .msg{
-    height: 80vh;
+    height: 75vh;
     overflow: scroll;
 }
 #createService{
