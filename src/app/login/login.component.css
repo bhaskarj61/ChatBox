@@ -14,16 +14,42 @@
   .fa-facebook {
     background: #3B5998;
     color: white;
+    border-radius: 50%;
   }
   
   .fa-twitter {
     background: #55ACEE;
     color: white;
+    border-radius: 50%;
   }
   
   .fa-google {
     background: #dd4b39;
     color: white;
+    border-radius: 50%;
+  }
+  .links{
+    align-content: center;
+  }
+  h1{
+     color: rgb(204, 204, 204);
+     align-content: center;
+  }
+  h2{
+    color: rgb(204, 204, 204);
+    align-content: center;
+  }
+  app-footer{
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+  }
+  .links{
+    margin-left:40%;  
+    margin-top: 10%;
+    margin-right: 47.7%;
+    border-style: solid;
+    background-color: aliceblue
   }
 
   

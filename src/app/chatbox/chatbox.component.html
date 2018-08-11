@@ -9,21 +9,40 @@
             <button (click)="joinChannel()" class="btn btn-primary">Join {{foundChannel}}</button><br/></li>
         </ul>
         <button id="createService" type="button" (click)="addService()" class="btn btn-primary">Click to create serveice</button>
-  </div>
-  <div class="message-content">
-    <div class="msg">
-      <h1>Your messages</h1>
-      <br/>
-        <ul *ngFor="let message of allMessages">
-          <li>{{message.body}}<hr></li>
+        
+        <button (click)="Display()" class="btn btn-primary">Display</button>
+        <ul *ngFor="let channel of channelArr">
+          <li >{{channel}}</li>
         </ul>
-    </div>
- <input type="text" class="form-control" placeholder="Enter message" [(ngModel)]="messages"/>
-<button (click)="sendMessage()" class="btn btn-primary">Send message</button>
-<button (click)="ngOnInit()" class="btn btn-primary">Show message</button>
+
+   </div>
+
+
+  <div class="message-content">
+      <section class="timeline">
+          <ul >
+            <li *ngFor="let message of allMessages">
+              <div>
+                  {{message.body}}
+              </div>
+            </li>
+             
+            <!-- more list items here -->
+          </ul>
+        </section>
+        <input type="text" class="form-control" placeholder="Enter message" [(ngModel)]="messages"/>
+        <button (click)="sendMessage()" class="btn btn-primary">Send message</button>
+        <button (click)="ngOnInit()" class="btn btn-primary">Show message</button>
 </div>
-</div>
-<app-footer></app-footer>
+
+
+
+
+
+
+
+  <app-footer></app-footer>
+
 
 
 

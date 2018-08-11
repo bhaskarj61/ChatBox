@@ -31,20 +31,32 @@ export class ChatboxComponent implements OnInit {
   messages="";
   //send message to twilio
   sendMessage(){
-    this.chatBox.sendMessage(this.messages).subscribe(res=>{
-      console.log(res);
-    },
-  err=>{
-    console.log(err);
-  })
+    if(this.messages==""){
+      return;
+    }
+    else{
+      this.chatBox.sendMessage(this.messages).subscribe(res=>{
+        console.log(res);
+      },
+    err=>{
+      console.log(err);
+    })
+    }
   }
-  email=localStorage.getItem('email');
+  name=localStorage.getItem('name');
   allMessages=[];
+  index;
   totalMessages:number;
   //View all messages
   viewMessage(){
+    console.log(this.name+"viewName");
        this.chatBox.viewMessages().subscribe(res=>{
         this.allMessages=res.messages
+        for(this.index=0;this.index++;this.index=this.allMessages.length)
+        {
+          this.allMessages[this.index]+=this.name;
+          console.log(this.allMessages[this.index]+"forloop")
+        }
       },
     err=>{
       console.log(err);
@@ -86,12 +98,30 @@ err=>{
 //joining a new channel
 joinChannel(){
   console.log(this.foundChannelId);
+  this.chatBox.getChannelId(this.foundChannelId);
+  this.viewMessage();
   this.chatBox.joinChannel(this.foundChannelId).subscribe(res=>{
     console.log(res);
   },err=>{
     console.log(err);
   })
 }
+
+//display all channel
+length;
+channelArr=[];
+Display() {
+  this.chatBox.DisplayAllChannel().subscribe(res => 
+          { 
+            console.log(res.channels.length)
+            this.length = res.channels.length;
+            for ( let i = 0; i < this.length; i++){ 
+            this.channelArr[i] = res.channels[i].unique_name;} 
+            }),
+            err => {
+              console.log(err);
+            }
+     } 
 
 //messages load on init
   ngOnInit() {

@@ -22,16 +22,22 @@ export class ChatboxService {
   }
   //create new channel
   addChannel(channelName:string):Observable<any> {
-    return this.http.post("https://chat.twilio.com/v2/Services/IS5d2e0aa7ae0e4945b35703395df8825b/Channels","FriendlyName=myChaBox&UniqueName="+channelName,this.httpOpt);
+    return this.http.post("https://chat.twilio.com/v2/Services/"+this.serviceId+"/Channels","FriendlyName=myChaBox&UniqueName="+channelName,this.httpOpt);
  }
 //searching all channel in the service
 searchChannel():Observable<any>{ 
   return  this.http.get("https://chat.twilio.com/v2/Services/"+this.serviceId+"/Channels",this.httpOpt).pipe(map(data=>data)); 
 }
 
-myChannelId:string="CH0c65686717fc4a5288bbb4289380590b";
+myChannelId:string='CHbfe8b6ac32b94e6b98d6d6571c7dd21e';
  identity:string=localStorage.getItem('email');
- serviceId:string='IS5d2e0aa7ae0e4945b35703395df8825b'
+ serviceId:string='IS0925384aa8e641fe97df04733b4f7588'
+ 
+ //change service id on join new channel
+ getChannelId(cID){
+  this.myChannelId=cID;
+  console.log("channel id set");
+ }
 
 
 //joining a channel
@@ -45,7 +51,10 @@ sendMessage(messages):Observable<any>{
 }
 
 viewMessages():Observable<any>{
-  return this.http.get("https://chat.twilio.com/v2/Services/IS5d2e0aa7ae0e4945b35703395df8825b/Channels/"+this.myChannelId+"/Messages",this.httpOpt).pipe(map(data=>data));
+  return this.http.get("https://chat.twilio.com/v2/Services/"+this.serviceId+"/Channels/"+this.myChannelId+"/Messages",this.httpOpt).pipe(map(data=>data));
+}
+DisplayAllChannel():Observable<any> {
+  return this.http.get('https://chat.twilio.com/v2/Services/'+this.serviceId+'/Channels', this.httpOpt);
 }
 }
 
