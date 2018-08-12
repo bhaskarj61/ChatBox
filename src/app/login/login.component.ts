@@ -28,7 +28,8 @@ export class LoginComponent {
         console.log(socialPlatform+" sign in data : " , userData);
         // Now sign-in with userData
         // ...
-        localStorage.setItem('name',userData.name);
+        sessionStorage.setItem('key',"raksahb");
+        localStorage.setItem('email',userData.email);
         this.router.navigate(['/chatbox']);
             
       }

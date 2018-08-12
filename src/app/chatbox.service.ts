@@ -29,7 +29,7 @@ searchChannel():Observable<any>{
   return  this.http.get("https://chat.twilio.com/v2/Services/"+this.serviceId+"/Channels",this.httpOpt).pipe(map(data=>data)); 
 }
 
-myChannelId:string='CHbfe8b6ac32b94e6b98d6d6571c7dd21e';
+ myChannelId:string='CHbfe8b6ac32b94e6b98d6d6571c7dd21e';
  identity:string=localStorage.getItem('email');
  serviceId:string='IS0925384aa8e641fe97df04733b4f7588'
  
@@ -38,7 +38,6 @@ myChannelId:string='CHbfe8b6ac32b94e6b98d6d6571c7dd21e';
   this.myChannelId=cID;
   console.log("channel id set");
  }
-
 
 //joining a channel
   joinChannel(channelId):Observable<any>{

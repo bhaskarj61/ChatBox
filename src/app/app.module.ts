@@ -1,3 +1,5 @@
+import { AuthService } from './auth.service';
+import { AuthguardService } from './authguard.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ChatboxComponent } from './chatbox/chatbox.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -34,9 +36,13 @@ export function getAuthServiceConfigs() {
 }
 const appRoutes: Routes = [
   { path: '',
-   component: LoginComponent },
+   component: LoginComponent,
+   canActivate:[AuthguardService]
+  },
   { path: 'chatbox',   
-   component: ChatboxComponent },
+   component: ChatboxComponent ,
+   canActivate:[AuthService]
+   },
    { path: '**',   
    component: PageNotFoundComponent },
 ];

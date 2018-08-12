@@ -17,6 +17,7 @@
 .timeline ul li {
     list-style-type: none;
     position: relative;
+    font-family: cursive;
     width: 6px;
     margin: 0 auto;
     padding-top: 50px;
