@@ -1,6 +1,7 @@
 import { ChatboxService } from './../chatbox.service';
 import { Subscriber } from '../../../node_modules/rxjs';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-chatbox',
@@ -8,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chatbox.component.css']
 })
 export class ChatboxComponent implements OnInit {
-  channelName;
+  channelName = "";
+  channelArray = [];
+  userName: string = localStorage.getItem("email");
 
-  constructor(private chatBox: ChatboxService) { }
+  constructor(private chatBox: ChatboxService, private router: Router) { }
   // add service call here
   addService() {
     this.chatBox.setData().subscribe(res => {
@@ -24,6 +27,7 @@ export class ChatboxComponent implements OnInit {
   addChannel() {
     this.chatBox.addChannel(this.channelName).subscribe(res => {
       console.log(res);
+      // this.channelName="";
     },
       err => {
         alert("already exist")
@@ -39,6 +43,7 @@ export class ChatboxComponent implements OnInit {
     else {
       this.chatBox.sendMessage(this.messages).subscribe(res => {
         console.log(res);
+        this.messages = "";
       },
         err => {
           console.log(err);
@@ -46,32 +51,16 @@ export class ChatboxComponent implements OnInit {
     }
   }
   //View all messages
-  // name = localStorage.getItem('name');
+
   allMessages = [];
   totalMessages: number;
-  // viewMessage() {
-  //   // console.log(this.name + "viewName");
-  //   this.chatBox.viewMessages().subscribe(res => {
-  //     this.allMessages = res.messages ;
-  //     //adding user email address to messages
-  //     this.allMessages.forEach(element => {
-  //       element.body+=('('+element.from+')')
-  //     });
-  //     // console.log(this.allMessages)
-  //   },
-  //     err => {
-  //       console.log(err);
-  //     })
-
-  // }
-
   // Messages refreshing after 1 set
   setint = setInterval(() => {
     this.chatBox.viewMessages().subscribe(res => {
       this.allMessages = res.messages;
       //adding user email address to messages
-      this.allMessages.forEach(element => {
-        element.body += ('(' + element.from + ')')
+      this.allMessages.forEach(message => {
+        message.body += ('(' + message.from + ')')
       });
       // console.log(this.allMessages)
     },
@@ -80,42 +69,53 @@ export class ChatboxComponent implements OnInit {
       })
   }, 1000);
 
+  //logout
+  logout() {
+    localStorage.clear();
+    sessionStorage.clear();
+    console.log("logout")
+    this.router.navigate(["/"]);
+  }
+
 
   //Search Channel
   channel: string = "";
   foundChannel = "general";
-  channelArray: any = [];
   foundChannelId = "";
   arrayLen;
+  reg: any;
+  allFoundChannel = [];
   searchChannel() {
+    if (this.channel.length < 3) {
+      return;
+    }
+    this.channelArr.length = 0;
     this.chatBox.searchChannel().subscribe(res => {
+      this.reg = new RegExp(this.channel, "i")
+      console.log(this.reg)
 
+      this.channelArr.length = 0;
       for (let index = 0; index < res.channels.length; index++) {
-        this.channelArray.push(res.channels[index].unique_name)
-
-        this.arrayLen = this.channelArray.length;
-        for (let index = 0; index < this.arrayLen; index++) {
-          if (this.channelArray[index] == this.channel) {
-            this.foundChannel = this.channel;
-            this.foundChannelId = res.channels[index].sid;
-            break;
-          }
-          else {
-            this.foundChannel = "channel not found";
-          }
+        if (this.reg.test(res.channels[index].unique_name)) {
+          let a: string = res.channels[index].unique_name;
+          this.channelArr.push(a)
         }
       }
+
     },
       err => {
         console.log();
       })
   }
 
+  //regExSearch
+
+  searchMyChannel = [];
+
   //joining a new channel
   joinChannel() {
     console.log(this.foundChannelId);
     this.chatBox.getChannelId(this.foundChannelId);
-    // this.viewMessage();
     this.chatBox.joinChannel(this.foundChannelId).subscribe(res => {
       console.log(res);
     }, err => {
@@ -140,15 +140,72 @@ export class ChatboxComponent implements OnInit {
   }
 
   //join display channels
+  joinChannelArray = [];
+  foundJoinChannel;
+  joinDisplayChannel(joinNewChannel) {
+    this.joinChannelArray.length = 0;
+    console.log("search channel " + joinNewChannel)
+    this.chatBox.searchChannel().subscribe(res => {
+      for (let index = 0; index < res.channels.length; index++) {
+        this.joinChannelArray.push(res.channels[index].unique_name)
+        console.log(this.joinChannelArray);
 
-  joinDisplayChannel(id){
-    this.foundChannelId=id;
-    this.joinChannel();
+        // this.arrayLen = this.joinChannelArray.length;
+        for (let index = 0; index < this.joinChannelArray.length; index++) {
+          if (this.joinChannelArray[index] == joinNewChannel) {
+            this.foundJoinChannel = joinNewChannel;
+            this.foundChannelId = res.channels[index].sid;
+            this.joinChannel();
+            break;
+          }
+          else {
+            this.foundChannel = "channel not found";
+          }
+        }
+      }
+    }),
+      err => {
+        console.log(err)
+      }
+    console.log(this.foundChannelId)
   }
 
-  //messages load on init
+//display user channels
+ChannelId=[];
+ChannelName=[];
+displaySuscribedChannel(){
+  this.chatBox.RetrieveUser().subscribe(res => {
+    this.chatBox.IsSubscribed(res.sid).subscribe(res => {
+      console.log(res);
+      this.length = res.channels.length;
+      for (let i = 0; i < this.length; i++) {
+        this.ChannelId[i] = res.channels[i].channel_sid;
+        console.log(this.ChannelId);
+      }
+      for (let i = 0; i < this.length; i++) {
+        this.chatBox.RetrieveChannelName(this.ChannelId[i]).subscribe(res => {
+          this.ChannelName[i] = res.unique_name;
+          console.log(this.ChannelName[i]);
+        }),
+          err => {
+            console.log(err);
+          }
+
+
+      }
+    }),
+      err => {
+        console.log(err);
+      }
+  }),
+    err => {
+      console.log(err);
+    }
+ }
+
+  
   ngOnInit() {
-    //  this.viewMessage();
+    
   }
 }
 

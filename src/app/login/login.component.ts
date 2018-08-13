@@ -30,6 +30,7 @@ export class LoginComponent {
         // ...
         sessionStorage.setItem('key',"raksahb");
         localStorage.setItem('email',userData.email);
+        localStorage.setItem('name',userData.name);
         this.router.navigate(['/chatbox']);
             
       }

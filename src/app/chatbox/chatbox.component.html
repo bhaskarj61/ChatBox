@@ -1,60 +1,57 @@
-<app-header></app-header>
-<div class="container">
-  <div class="side-bar">
-      <ul class="nav nav-pills nav-stacked">
-        <li><b>Your channel:{{foundChannel}}</b></li>
-          <li><input type="text"  class="form-control" placeholder="Enter new Channel name" [(ngModel)]="channelName"/>
-            <!-- <button type="button" class="btn btn-primary" (click)="addChannel()">Click to create Channel</button></li> -->
-            <button type="button" (click)="addChannel()" class="btn btn-default btn-sm">
-                <span class="glyphicon glyphicon-ok"></span>
+<!-- <app-header></app-header> -->
+<div class="side-bar">
+  <ul class="nav nav-pills nav-stacked">
+    <li>
+      <b>Welcome: {{this.userName}}</b>
+    </li>
+
+    <li>
+      <input type="text" class="form-control" placeholder="Enter new Channel name" [(ngModel)]="channelName" />
+      <!-- <button type="button" class="btn btn-primary" (click)="addChannel()">Click to create Channel</button></li> -->
+      <button type="button" (click)="addChannel()" class="btn btn-default btn-sm">
+        <span class="glyphicon glyphicon-plus"></span>
+      </button>
+    </li>
+    <li>
+      <input class="form-control" type="text" (keyup)="searchChannel()" placeholder="Search channel" [(ngModel)]="channel">
+      <ul>
+        <li *ngFor='let ChannelName of channelArr'>
+          <button type="button" (click)="joinDisplayChannel(ChannelName)" class="btn btn-default btn-sm">
+             Join: {{ChannelName}}
+          </button>
+        </li>
+       </ul>
+          <button type="button" (click)="displaySuscribedChannel()" class="btn btn-default btn-sm">
+              <b>My Channels</b><span class="glyphicon glyphicon-arrow-down"></span>
+          </button> 
+          <ul *ngFor="let suscribedChannel of ChannelName">
+              <li>
+              <button type="button" (click)="joinDisplayChannel(suscribedChannel)" class="btn btn-default btn-sm">
+                  {{suscribedChannel}}
               </button>
-            <li> <input  class="form-control" type="text" placeholder="Search channel" [(ngModel)]="channel">
-            <button class="btn btn-default" (click)="searchChannel()"><i class="glyphicon glyphicon-search"></i></button>
-            <!-- <button (click)="joinChannel()" class="btn btn-primary">Join</button> -->
-            <button type="button" (click)="joinChannel()" class="btn btn-default btn-sm">
-                <span class="glyphicon glyphicon-plus"><b>Join:{{foundChannel}}</b></span>
-              </button>
-            
-            <br/></li>
-        </ul>
-        <!-- <button id="createService" type="button" (click)="addService()" class="btn btn-primary">Click to create serveice</button> -->
-        
-        <button (click)="Display()" class="btn btn-primary">Display all channels</button>
-        <ul *ngFor="let displayChannelId of channelArr">
-          <li >
-            <button (click)="joinDisplayChannel(displayChannelId)"  class="btn btn-primary">Join {{displayChannelId}} </button><br/>
-          </li>
-        </ul>
+              </li>
+            </ul>
+      <br/>
+    </li>
+  </ul>
+  <button (click)="logout()" id="logout" class="btn btn-danger">Logout</button>
 
-   </div>
-
-
-  
-  <div class="message-content">
-      <section class="timeline">
-          <ul >
-            <li *ngFor="let message of allMessages">
-              <div>
-                  {{message.body}}
-              </div>
-            </li>
-             
-            <!-- more list items here -->
-          </ul>
-        </section>
-        <input type="text" class="form-control" placeholder="Enter message" [(ngModel)]="messages"/>
-        <button (click)="sendMessage()" class="btn btn-primary">Send message</button>
-        <!-- <button (click)="ngOnInit()" class="btn btn-primary">Show message</button> -->
 </div>
 
 
-
-
-
-
-
-  <app-footer></app-footer>
-
-
-
-
+<div class="message-content">
+  <section class="timeline">
+    <ul>
+      <li  *ngFor="let message of allMessages">
+        <div [ngStyle]='{"float": message.from == this.userName ? "left": "right"}'
+        [ngClass]="{'alert alert-warning':(message.from != this.userName),'alert alert-success':(message.from == this.userName)}"
+        >
+          {{message.body}}
+          <hr>
+        </div>
+      </li>
+    </ul>
+  </section>
+  <input type="text" class="form-control" placeholder="Enter message" [(ngModel)]="messages" />
+  <button (click)="sendMessage()" class="btn btn-primary">Send message</button>
+</div>

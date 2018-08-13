@@ -1,0 +1,5 @@
+  display: flex;
+    flex-direction: column-reverse;
+
+    "   [ngClass]="{'alert alert-warning':(message.from != this.userName),'alert alert-success':(message.from == this.userName)}"
+              [ngStyle]='{"float": message.from == this.userName ? "right": "left"}'

@@ -55,5 +55,14 @@ viewMessages():Observable<any>{
 DisplayAllChannel():Observable<any> {
   return this.http.get('https://chat.twilio.com/v2/Services/'+this.serviceId+'/Users/'+this.identity+'/Channels/', this.httpOpt);
 }
+RetrieveUser():Observable<any>{
+  return this.http.get('https://chat.twilio.com/v2/Services/'+this.serviceId+'/Users/'+this.identity, this.httpOpt);
+}
+IsSubscribed(str):Observable<any>{
+  return this.http.get('https://chat.twilio.com/v2/Services/'+this.serviceId+'/Users/'+str+'/Channels/', this.httpOpt);
+}
+RetrieveChannelName(str):Observable<any>{
+  return this.http.get('https://chat.twilio.com/v2/Services/'+this.serviceId+'/Channels/'+str ,this.httpOpt);
+}
 }
 

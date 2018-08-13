@@ -1,31 +1,43 @@
 .side-bar{
     width:25%;
-    height:85vh;
+    height:100vh;
     float: left;
+    background-color: rgb(180, 176, 171)
+}
+hr{
+    background-color:#341236;
 }
 .message-content{
     width:75%;
-    height:85vh;
+    height:88vh;
     float: left;
-    /* background-color: #d10303bd;    */
-    background-image: url("http://easywebplans.com/wp-content/uploads/2015/12/Free-Download-Background-Images-For-Website-Design-4.jpg");
+    background-color: #341236;   
 }
-.timeline{
+#logout{
+    bottom: 0;
+    position: fixed;
+  }
+ .timeline{
     overflow-y: auto; 
     overflow-x: hidden;
-    height: 75vh;
+    height: 90vh;
+    display: flex;
+    flex-direction: column-reverse;
 }
-.timeline ul li {
+
+ .timeline ul li {   
     list-style-type: none;
+    word-wrap: break-word;
     position: relative;
     font-family: cursive;
-    width: 6px;
+    width: 0px;
     margin: 0 auto;
     padding-top: 50px;
     background: #fff;
-  }
+
+  } 
    
-  .timeline ul li::after {
+   /* .timeline ul li::after {
     content: '';
     position: absolute;
     left: 50%;
@@ -35,11 +47,13 @@
     height: 30px;
     border-radius: 50%;
     background: inherit;
-  }
-  .timeline ul li div {
+  }  */
+    .timeline ul li div {
     position: relative;
+    /* border-radius: 5%; */
     bottom: 0;
-    width: 400px;
+    border-radius: 5%;
+    width: 500px;
     padding: 15px;
     background: #ffffff;
   }
@@ -51,24 +65,4 @@
     width: 0;
     height: 0;
     border-style: solid;
-  }
-  .timeline ul li:nth-child(odd) div {
-    left: 45px;
-  }
-   
-  .timeline ul li:nth-child(odd) div::before {
-    left: -15px;
-    border-width: 8px 16px 8px 0;
-    border-color: transparent #f7f300bd transparent transparent;
-  }
-  .timeline ul li:nth-child(even) div {
-    left: -439px;
-  }
-   
-  .timeline ul li:nth-child(even) div::before {
-    right: -15px;
-    border-width: 8px 0 8px 16px;
-    border-color: transparent transparent transparent #00c8ffbd;
-  }
-
-
+  } 
