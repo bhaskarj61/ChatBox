@@ -53,7 +53,7 @@ viewMessages():Observable<any>{
   return this.http.get("https://chat.twilio.com/v2/Services/"+this.serviceId+"/Channels/"+this.myChannelId+"/Messages",this.httpOpt).pipe(map(data=>data));
 }
 DisplayAllChannel():Observable<any> {
-  return this.http.get('https://chat.twilio.com/v2/Services/'+this.serviceId+'/Channels', this.httpOpt);
+  return this.http.get('https://chat.twilio.com/v2/Services/'+this.serviceId+'/Users/'+this.identity+'/Channels/', this.httpOpt);
 }
 }
 

@@ -12,7 +12,7 @@
             <button class="btn btn-default" (click)="searchChannel()"><i class="glyphicon glyphicon-search"></i></button>
             <!-- <button (click)="joinChannel()" class="btn btn-primary">Join</button> -->
             <button type="button" (click)="joinChannel()" class="btn btn-default btn-sm">
-                <span class="glyphicon glyphicon-plus"></span>
+                <span class="glyphicon glyphicon-plus"><b>Join:{{foundChannel}}</b></span>
               </button>
             
             <br/></li>
@@ -20,9 +20,9 @@
         <!-- <button id="createService" type="button" (click)="addService()" class="btn btn-primary">Click to create serveice</button> -->
         
         <button (click)="Display()" class="btn btn-primary">Display all channels</button>
-        <ul *ngFor="let displayChannel of channelArr">
+        <ul *ngFor="let displayChannelId of channelArr">
           <li >
-            <button (click)="joinDisplayChannel()"  class="btn btn-primary">Join {{displayChannel}} </button><br/>
+            <button (click)="joinDisplayChannel(displayChannelId)"  class="btn btn-primary">Join {{displayChannelId}} </button><br/>
           </li>
         </ul>
 
@@ -44,7 +44,7 @@
         </section>
         <input type="text" class="form-control" placeholder="Enter message" [(ngModel)]="messages"/>
         <button (click)="sendMessage()" class="btn btn-primary">Send message</button>
-        <button (click)="ngOnInit()" class="btn btn-primary">Show message</button>
+        <!-- <button (click)="ngOnInit()" class="btn btn-primary">Show message</button> -->
 </div>
 
 

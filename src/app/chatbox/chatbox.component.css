@@ -11,7 +11,8 @@
     background-image: url("http://easywebplans.com/wp-content/uploads/2015/12/Free-Download-Background-Images-For-Website-Design-4.jpg");
 }
 .timeline{
-    overflow: scroll; 
+    overflow-y: auto; 
+    overflow-x: hidden;
     height: 75vh;
 }
 .timeline ul li {

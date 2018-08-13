@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatboxComponent implements OnInit {
   channelName;
- 
+
   constructor(private chatBox: ChatboxService) { }
   // add service call here
   addService() {
@@ -47,7 +47,7 @@ export class ChatboxComponent implements OnInit {
   }
   //View all messages
   // name = localStorage.getItem('name');
-  allMessages=[];
+  allMessages = [];
   totalMessages: number;
   // viewMessage() {
   //   // console.log(this.name + "viewName");
@@ -62,24 +62,24 @@ export class ChatboxComponent implements OnInit {
   //     err => {
   //       console.log(err);
   //     })
-   
+
   // }
 
   // Messages refreshing after 1 set
-  setint=setInterval(() => {
+  setint = setInterval(() => {
     this.chatBox.viewMessages().subscribe(res => {
-      this.allMessages = res.messages ;
+      this.allMessages = res.messages;
       //adding user email address to messages
       this.allMessages.forEach(element => {
-        element.body+=('('+element.from+')')
+        element.body += ('(' + element.from + ')')
       });
       // console.log(this.allMessages)
     },
       err => {
         console.log(err);
       })
-    }, 1000);
-    
+  }, 1000);
+
 
   //Search Channel
   channel: string = "";
@@ -92,6 +92,7 @@ export class ChatboxComponent implements OnInit {
 
       for (let index = 0; index < res.channels.length; index++) {
         this.channelArray.push(res.channels[index].unique_name)
+
         this.arrayLen = this.channelArray.length;
         for (let index = 0; index < this.arrayLen; index++) {
           if (this.channelArray[index] == this.channel) {
@@ -130,7 +131,7 @@ export class ChatboxComponent implements OnInit {
       console.log(res.channels.length)
       this.length = res.channels.length;
       for (let i = 0; i < this.length; i++) {
-        this.channelArr[i] = res.channels[i].unique_name;
+        this.channelArr[i] = res.channels[i].channel_sid;
       }
     }),
       err => {
@@ -138,6 +139,12 @@ export class ChatboxComponent implements OnInit {
       }
   }
 
+  //join display channels
+
+  joinDisplayChannel(id){
+    this.foundChannelId=id;
+    this.joinChannel();
+  }
 
   //messages load on init
   ngOnInit() {
