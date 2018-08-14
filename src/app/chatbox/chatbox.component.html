@@ -52,6 +52,8 @@
       </li>
     </ul>
   </section>
-  <input type="text" class="form-control" placeholder="Enter message" [(ngModel)]="messages" />
+ <div id="sendMsg">
+    <input type="text" class="form-control" placeholder="Enter message" [(ngModel)]="messages"/>
   <button (click)="sendMessage()" class="btn btn-primary">Send message</button>
+ </div>
 </div>

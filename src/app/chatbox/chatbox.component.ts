@@ -27,12 +27,13 @@ export class ChatboxComponent implements OnInit {
   addChannel() {
     this.chatBox.addChannel(this.channelName).subscribe(res => {
       console.log(res);
-      // this.channelName="";
+     
     },
       err => {
         alert("already exist")
         console.log(err)
       })
+      this.channelName="";
   }
   //send message to twilio
   messages = "";
@@ -173,35 +174,40 @@ export class ChatboxComponent implements OnInit {
 //display user channels
 ChannelId=[];
 ChannelName=[];
+setChannelInt;
 displaySuscribedChannel(){
-  this.chatBox.RetrieveUser().subscribe(res => {
-    this.chatBox.IsSubscribed(res.sid).subscribe(res => {
-      console.log(res);
-      this.length = res.channels.length;
-      for (let i = 0; i < this.length; i++) {
-        this.ChannelId[i] = res.channels[i].channel_sid;
-        console.log(this.ChannelId);
-      }
-      for (let i = 0; i < this.length; i++) {
-        this.chatBox.RetrieveChannelName(this.ChannelId[i]).subscribe(res => {
-          this.ChannelName[i] = res.unique_name;
-          console.log(this.ChannelName[i]);
-        }),
-          err => {
-            console.log(err);
-          }
-
-
-      }
+  this.setChannelInt = setInterval(() => {
+    this.chatBox.RetrieveUser().subscribe(res => {
+      this.chatBox.IsSubscribed(res.sid).subscribe(res => {
+        console.log(res);
+        this.length = res.channels.length;
+        for (let i = 0; i < this.length; i++) {
+          this.ChannelId[i] = res.channels[i].channel_sid;
+          console.log(this.ChannelId);
+        }
+        for (let i = 0; i < this.length; i++) {
+          this.chatBox.RetrieveChannelName(this.ChannelId[i]).subscribe(res => {
+            this.ChannelName[i] = res.unique_name;
+            console.log(this.ChannelName[i]);
+          }),
+            err => {
+              console.log(err);
+            }
+  
+  
+        }
+      }),
+        err => {
+          console.log(err);
+        }
     }),
       err => {
         console.log(err);
       }
-  }),
-    err => {
-      console.log(err);
-    }
+  }, 1000);
  }
+
+ //check
 
   
   ngOnInit() {
