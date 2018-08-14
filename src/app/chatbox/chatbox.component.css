@@ -56,6 +56,8 @@ hr{
     border-radius: 5%;
     width: 500px;
     padding: 15px;
+    border-style: solid;
+    border-color: #341236;
     /* background: #ffffff; */
   }
    
@@ -66,4 +68,6 @@ hr{
     width: 0;
     height: 0;
     border-style: solid;
+    border-style: solid;
+    border-color: #000000;
   }  */

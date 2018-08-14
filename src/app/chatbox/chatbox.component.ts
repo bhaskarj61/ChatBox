@@ -27,6 +27,7 @@ export class ChatboxComponent implements OnInit {
   addChannel() {
     this.chatBox.addChannel(this.channelName).subscribe(res => {
       console.log(res);
+      alert(this.channelName +" "+"Successfully Created")
      
     },
       err => {
@@ -52,8 +53,8 @@ export class ChatboxComponent implements OnInit {
     }
   }
   //View all messages
-
   allMessages = [];
+  date;
   totalMessages: number;
   // Messages refreshing after 1 set
   setint = setInterval(() => {
@@ -62,6 +63,7 @@ export class ChatboxComponent implements OnInit {
       //adding user email address to messages
       this.allMessages.forEach(message => {
         message.body += ('(' + message.from + ')')
+        this.date=message.date_updated;
       });
       // console.log(this.allMessages)
     },

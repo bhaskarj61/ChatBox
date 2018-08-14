@@ -46,7 +46,7 @@
         <div [ngStyle]='{"float": message.from == this.userName ? "left": "right"}'
         [ngClass]="{'alert alert-warning':(message.from != this.userName),'alert alert-success':(message.from == this.userName)}"
         >
-          {{message.body}}
+          {{message.body}}:{{date|date:'h m a'}}
           <hr>
         </div>
       </li>
@@ -54,6 +54,6 @@
   </section>
  <div id="sendMsg">
     <input type="text" class="form-control" placeholder="Enter message" [(ngModel)]="messages"/>
-  <button (click)="sendMessage()" class="btn btn-primary">Send message</button>
+  <button (click)="sendMessage()" class="btn btn-success">Send message</button>
  </div>
 </div>
