@@ -27,14 +27,14 @@ export class ChatboxComponent implements OnInit {
   addChannel() {
     this.chatBox.addChannel(this.channelName).subscribe(res => {
       console.log(res);
-      alert(this.channelName +" "+"Successfully Created")
-     
+      alert(this.channelName + " " + "Successfully Created")
+
     },
       err => {
         alert("already exist")
         console.log(err)
       })
-      this.channelName="";
+    this.channelName = "";
   }
   //send message to twilio
   messages = "";
@@ -52,6 +52,8 @@ export class ChatboxComponent implements OnInit {
         })
     }
   }
+
+
   //View all messages
   allMessages = [];
   date;
@@ -63,7 +65,7 @@ export class ChatboxComponent implements OnInit {
       //adding user email address to messages
       this.allMessages.forEach(message => {
         message.body += ('(' + message.from + ')')
-        this.date=message.date_updated;
+        this.date = message.date_updated;
       });
       // console.log(this.allMessages)
     },
@@ -82,6 +84,8 @@ export class ChatboxComponent implements OnInit {
 
 
   //Search Channel
+  //regExSearch
+  searchMyChannel = [];
   channel: string = "";
   foundChannel = "general";
   foundChannelId = "";
@@ -111,9 +115,6 @@ export class ChatboxComponent implements OnInit {
       })
   }
 
-  //regExSearch
-
-  searchMyChannel = [];
 
   //joining a new channel
   joinChannel() {
@@ -129,25 +130,25 @@ export class ChatboxComponent implements OnInit {
   //display all channel
   length;
   channelArr = [];
-  Display() {
-    this.chatBox.DisplayAllChannel().subscribe(res => {
-      console.log(res.channels.length)
-      this.length = res.channels.length;
-      for (let i = 0; i < this.length; i++) {
-        this.channelArr[i] = res.channels[i].channel_sid;
-      }
-    }),
-      err => {
-        console.log(err);
-      }
-  }
+  // Display() {
+  //   this.chatBox.DisplayAllChannel().subscribe(res => {
+  //     // console.log(res.channels.length)
+  //     this.length = res.channels.length;
+  //     for (let i = 0; i < this.length; i++) {
+  //       this.channelArr[i] = res.channels[i].channel_sid;
+  //     }
+  //   }),
+  //     err => {
+  //       console.log(err);
+  //     }
+  // }
 
   //join display channels
   joinChannelArray = [];
   foundJoinChannel;
   joinDisplayChannel(joinNewChannel) {
     this.joinChannelArray.length = 0;
-    console.log("search channel " + joinNewChannel)
+    // console.log("search channel " + joinNewChannel)
     this.chatBox.searchChannel().subscribe(res => {
       for (let index = 0; index < res.channels.length; index++) {
         this.joinChannelArray.push(res.channels[index].unique_name)
@@ -157,7 +158,7 @@ export class ChatboxComponent implements OnInit {
         for (let index = 0; index < this.joinChannelArray.length; index++) {
           if (this.joinChannelArray[index] == joinNewChannel) {
             this.foundJoinChannel = joinNewChannel;
-            this.user=this.foundJoinChannel;
+            this.user = this.foundJoinChannel;
             this.foundChannelId = res.channels[index].sid;
             this.joinChannel();
             break;
@@ -174,50 +175,50 @@ export class ChatboxComponent implements OnInit {
     // console.log(this.foundChannelId)
   }
 
-//display user channels
-ChannelId=[];
-ChannelName=[];
-setChannelInt;
-flag=0;
-user:string='general';
-displaySuscribedChannel(){
-  this.setChannelInt = setInterval(() => {
-    this.chatBox.RetrieveUser().subscribe(res => {
-      this.chatBox.IsSubscribed(res.sid).subscribe(res => {
-        console.log(res);
-        this.flag=1;
-        this.length = res.channels.length;
-        for (let i = 0; i < this.length; i++) {
-          this.ChannelId[i] = res.channels[i].channel_sid;
-          console.log(this.ChannelId);
-        }
-        for (let i = 0; i < this.length; i++) {
-          this.chatBox.RetrieveChannelName(this.ChannelId[i]).subscribe(res => {
-            this.ChannelName[i] = res.unique_name;
-            console.log(this.ChannelName[i]);
-          }),
-            err => {
-              console.log(err);
-            }
-  
-  
-        }
+  //display user channels
+  ChannelId = [];
+  ChannelName = [];
+  setChannelInt;
+  flag = 0;
+  user: string = 'general';
+  displaySuscribedChannel() {
+    this.setChannelInt = setInterval(() => {
+      this.chatBox.RetrieveUser().subscribe(res => {
+        this.chatBox.IsSubscribed(res.sid).subscribe(res => {
+          // console.log(res);
+          this.flag = 1;
+          this.length = res.channels.length;
+          for (let i = 0; i < this.length; i++) {
+            this.ChannelId[i] = res.channels[i].channel_sid;
+            // console.log(this.ChannelId);
+          }
+          for (let i = 0; i < this.length; i++) {
+            this.chatBox.RetrieveChannelName(this.ChannelId[i]).subscribe(res => {
+              this.ChannelName[i] = res.unique_name;
+              // console.log(this.ChannelName[i]);
+            }),
+              err => {
+                console.log(err);
+              }
+
+
+          }
+        }),
+          err => {
+            console.log(err);
+          }
       }),
         err => {
           console.log(err);
         }
-    }),
-      err => {
-        console.log(err);
-      }
-  }, 1000);
- }
+    }, 2000);
+  }
 
- //check
+  //check
 
-  
+
   ngOnInit() {
-    
+
   }
 }
 

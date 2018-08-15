@@ -7,7 +7,6 @@
 
     <li>
       <input type="text" class="form-control" placeholder="Enter new Channel name" [(ngModel)]="channelName" />
-      <!-- <button type="button" class="btn btn-primary" (click)="addChannel()">Click to create Channel</button></li> -->
       <button type="button" (click)="addChannel()" class="btn btn-default btn-sm">
         <span class="glyphicon glyphicon-plus"></span>
       </button>
@@ -17,22 +16,21 @@
       <ul>
         <li *ngFor='let ChannelName of channelArr'>
           <button type="button" (click)="joinDisplayChannel(ChannelName)" class="btn btn-default btn-sm">
-             Join: {{ChannelName}}
+            Join: {{ChannelName}}
           </button>
         </li>
-       </ul>
-          <button type="button" (click)="displaySuscribedChannel()" class="btn btn-default btn-sm">
-              <b>My Channels</b><span class="glyphicon glyphicon-arrow-down"></span>
-          </button> 
-          <ul *ngFor="let suscribedChannel of ChannelName">
-              <li>
-              <button type="button" (click)="joinDisplayChannel(suscribedChannel)" 
-              class="btn btn-default btn-sm"
-              [ngStyle]='{"color": this.flag==1 ? "green": "grey"}'>
-                  {{suscribedChannel}}
-              </button>
-              </li>
-            </ul>
+      </ul>
+      <button type="button" (click)="displaySuscribedChannel()" class="btn btn-default btn-sm">
+        <b>My Channels</b>
+        <span class="glyphicon glyphicon-arrow-down"></span>
+      </button>
+      <ul *ngFor="let suscribedChannel of ChannelName">
+        <li>
+          <button type="button" (click)="joinDisplayChannel(suscribedChannel)" class="btn btn-default btn-sm" [ngStyle]='{"color": this.flag==1 ? "green": "grey"}'>
+            {{suscribedChannel}}
+          </button>
+        </li>
+      </ul>
       <br/>
     </li>
   </ul>
@@ -43,22 +41,20 @@
 
 <div class="message-content">
   <div class="channel name">
-   <b  [ngStyle]='{"color":"white"}'>#{{this.user}}</b>
+    <b [ngStyle]='{"color":"white"}'>#{{this.user}}</b>
   </div>
   <section class="timeline">
     <ul>
-      <li  *ngFor="let message of allMessages">
-        <div [ngStyle]='{"float": message.from == this.userName ? "left": "right"}'
-        [ngClass]="{'alert alert-warning':(message.from != this.userName),'alert alert-success':(message.from == this.userName)}"
-        >
+      <li *ngFor="let message of allMessages">
+        <div [ngStyle]='{"float": message.from == this.userName ? "left": "right"}' [ngClass]="{'alert alert-warning':(message.from != this.userName),'alert alert-success':(message.from == this.userName)}">
           {{message.body}}:{{date|date:'h m a'}}
           <hr>
         </div>
       </li>
     </ul>
   </section>
- <div id="sendMsg">
-    <input type="text" class="form-control" placeholder="Enter message" [(ngModel)]="messages"/>
-  <button (click)="sendMessage()" class="btn btn-success">Send message</button>
- </div>
+  <div id="sendMsg">
+    <input type="text" class="form-control" placeholder="Enter message" [(ngModel)]="messages" />
+    <button (click)="sendMessage()" class="btn btn-success">Send message</button>
+  </div>
 </div>
