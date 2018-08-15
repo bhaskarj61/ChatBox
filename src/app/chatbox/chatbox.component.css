@@ -33,42 +33,22 @@ hr{
     font-family: cursive;
     width: 0px;
     margin: 0 auto;
-    padding-top: 50px;
+    padding-top: 20px;
     background: #fff;
 
   } 
 
-   
-   /* .timeline ul li::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%);
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: inherit;
-  }  */
+
     .timeline ul li div {
     position: relative;
     /* border-radius: 5%; */
     bottom: 0;
     border-radius: 5%;
     width: 500px;
-    padding: 15px;
+    padding: 0px;
     border-style: solid;
     border-color: #341236;
     /* background: #ffffff; */
   }
    
-  /* .timeline ul li div::before {
-    content: '';
-    position: absolute;
-    bottom: 7px;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-style: solid;
-    border-color: #000000;
-  }  */
+
