@@ -1,29 +1,32 @@
 .side-bar{
-    width:25%;
+    width:20%;
     height:100vh;
     float: left;
-    background-color: rgb(180, 176, 171)
+    background-color: #341236
 }
 hr{
     background-color:#341236;
 }
 .message-content{
-    width:75%;
-    height:90vh;
+    width:80%;
+    height:91vh;
     float: left;
-    background-color: #341236;   
+    background-color: #96abf8;   
+}
+.channel-name{
+    background-color: #96abf8; 
+    height: 7vh;
 }
 #logout{
-    bottom: 0;
-    width:25%;
-    position: fixed;
+    float: right;
   }
  .timeline{
     overflow-y: auto; 
     overflow-x: hidden;
-    height: 87vh;
+    height: 83vh;
     display: flex;
     flex-direction: column-reverse;
+
 }
 
  .timeline ul li {   
@@ -47,7 +50,7 @@ hr{
     width: 500px;
     padding: 0px;
     border-style: solid;
-    border-color: #341236;
+    /* border-color: #341236; */
     /* background: #ffffff; */
   }
    

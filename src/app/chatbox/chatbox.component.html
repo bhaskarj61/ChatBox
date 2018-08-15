@@ -2,7 +2,7 @@
 <div class="side-bar">
   <ul class="nav nav-pills nav-stacked">
     <li>
-      <b>Welcome: {{this.userName}}</b>
+      <b [ngStyle]='{"color":"white"}'>Welcome: {{this.userName}}</b>
     </li>
 
     <li>
@@ -34,16 +34,17 @@
       <br/>
     </li>
   </ul>
-  <button (click)="logout()" id="logout" class="btn btn-danger">Logout</button>
 
+</div>
+
+<div class="channel-name">
+    <b [ngStyle]='{"color":"white"}'>#{{this.user}}</b>
+    <button (click)="logout()" id="logout" class="btn btn-danger">Logout</button>
 </div>
 
 
 <div class="message-content">
-  <div class="channel name">
-    <b [ngStyle]='{"color":"white"}'>#{{this.user}}</b>
-  </div>
-  <section class="timeline">
+  <div class="timeline">
     <ul>
       <li *ngFor="let message of allMessages">
         <div [ngStyle]='{"float": message.from == this.userName ? "left": "right"}' [ngClass]="{'alert alert-warning':(message.from != this.userName),'alert alert-success':(message.from == this.userName)}">
@@ -52,7 +53,7 @@
         </div>
       </li>
     </ul>
-  </section>
+  </div>
   <div id="sendMsg">
     <input type="text" class="form-control" placeholder="Enter message" [(ngModel)]="messages" />
     <button (click)="sendMessage()" class="btn btn-success">Send message</button>
