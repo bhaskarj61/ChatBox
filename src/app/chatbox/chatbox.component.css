@@ -9,7 +9,7 @@ hr{
 }
 .message-content{
     width:75%;
-    height:88vh;
+    height:90vh;
     float: left;
     background-color: #341236;   
 }
@@ -21,7 +21,7 @@ hr{
  .timeline{
     overflow-y: auto; 
     overflow-x: hidden;
-    height: 90vh;
+    height: 87vh;
     display: flex;
     flex-direction: column-reverse;
 }
@@ -37,6 +37,7 @@ hr{
     background: #fff;
 
   } 
+
    
    /* .timeline ul li::after {
     content: '';

@@ -12,7 +12,7 @@ export class AuthService implements CanActivate {
     if(sessionStorage.getItem("key")=="raksahb"){
       return true;
     }
-    alert('Session Timed-out');
+    alert('Please login');
     this.router.navigate(['/']);
     return false;
   }

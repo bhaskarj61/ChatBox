@@ -151,12 +151,13 @@ export class ChatboxComponent implements OnInit {
     this.chatBox.searchChannel().subscribe(res => {
       for (let index = 0; index < res.channels.length; index++) {
         this.joinChannelArray.push(res.channels[index].unique_name)
-        console.log(this.joinChannelArray);
+        // console.log(this.joinChannelArray);
 
         // this.arrayLen = this.joinChannelArray.length;
         for (let index = 0; index < this.joinChannelArray.length; index++) {
           if (this.joinChannelArray[index] == joinNewChannel) {
             this.foundJoinChannel = joinNewChannel;
+            this.user=this.foundJoinChannel;
             this.foundChannelId = res.channels[index].sid;
             this.joinChannel();
             break;
@@ -170,18 +171,21 @@ export class ChatboxComponent implements OnInit {
       err => {
         console.log(err)
       }
-    console.log(this.foundChannelId)
+    // console.log(this.foundChannelId)
   }
 
 //display user channels
 ChannelId=[];
 ChannelName=[];
 setChannelInt;
+flag=0;
+user:string='general';
 displaySuscribedChannel(){
   this.setChannelInt = setInterval(() => {
     this.chatBox.RetrieveUser().subscribe(res => {
       this.chatBox.IsSubscribed(res.sid).subscribe(res => {
         console.log(res);
+        this.flag=1;
         this.length = res.channels.length;
         for (let i = 0; i < this.length; i++) {
           this.ChannelId[i] = res.channels[i].channel_sid;

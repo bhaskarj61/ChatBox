@@ -26,7 +26,9 @@
           </button> 
           <ul *ngFor="let suscribedChannel of ChannelName">
               <li>
-              <button type="button" (click)="joinDisplayChannel(suscribedChannel)" class="btn btn-default btn-sm">
+              <button type="button" (click)="joinDisplayChannel(suscribedChannel)" 
+              class="btn btn-default btn-sm"
+              [ngStyle]='{"color": this.flag==1 ? "green": "grey"}'>
                   {{suscribedChannel}}
               </button>
               </li>
@@ -40,6 +42,9 @@
 
 
 <div class="message-content">
+  <div class="channel name">
+   <b  [ngStyle]='{"color":"white"}'>#{{this.user}}</b>
+  </div>
   <section class="timeline">
     <ul>
       <li  *ngFor="let message of allMessages">
