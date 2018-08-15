@@ -9,7 +9,7 @@ hr{
 }
 .message-content{
     width:80%;
-    height:91vh;
+    height:93vh;
     float: left;
     background-color: #96abf8;   
 }
@@ -26,7 +26,6 @@ hr{
     height: 83vh;
     display: flex;
     flex-direction: column-reverse;
-
 }
 
  .timeline ul li {   
@@ -36,8 +35,8 @@ hr{
     font-family: cursive;
     width: 0px;
     margin: 0 auto;
-    padding-top: 20px;
-    background: #fff;
+    /* padding-top: 20px; */
+    /* background: #fff; */
 
   } 
 
