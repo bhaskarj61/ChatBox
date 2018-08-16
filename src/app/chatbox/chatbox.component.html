@@ -38,7 +38,7 @@
 </div>
 
 <div class="channel-name">
-    <b [ngStyle]='{"color":"white"}'>#{{this.user}}</b>
+    <b [ngStyle]='{"color":"#58101c"}'>#{{this.user}}</b>
     <button (click)="logout()" id="logout" class="btn btn-danger">Logout</button>
 </div>
 
@@ -47,7 +47,7 @@
   <div class="timeline">
     <ul>
       <li *ngFor="let message of allMessages">
-        <div [ngStyle]='{"float": message.from == this.userName ? "left": "right"}' [ngClass]="{'alert alert-warning':(message.from != this.userName),'alert alert-success':(message.from == this.userName)}">
+        <div [ngStyle]='{"float": message.from == this.userName ? "left": "right"}' [ngClass]="{'alert alert-danger':(message.from != this.userName),'alert alert-success':(message.from == this.userName)}">
           {{message.body}}:{{date|date:'h m a'}}
           <hr>
         </div>

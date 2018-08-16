@@ -2,7 +2,9 @@
     width:20%;
     height:100vh;
     float: left;
-    background-color: #341236
+    background-color:#58101c;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 30x;
 }
 hr{
     background-color:#341236;
@@ -11,10 +13,14 @@ hr{
     width:80%;
     height:93vh;
     float: left;
-    background-color: #96abf8;   
+    background-color: #fdf4f6;
 }
 .channel-name{
-    background-color: #96abf8; 
+    background-color: #fdf4f6; 
+    
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 35px;
+
     height: 7vh;
 }
 #logout{
